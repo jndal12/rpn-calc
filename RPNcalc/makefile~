@@ -1,0 +1,22 @@
+CPP = g++
+CPPFLAGS = -std=c++0x -g
+CXX = g++ -std=c++11
+DEBUG = -g
+CXXFLAGS = $(shell fltk-config --cxxflags ) -std=c++11 -I.
+LDFLAGS = $(shell fltk-config --ldflags )
+LDSTATIC = $(shell fltk-config --ldstaticflags )
+LINK = g++-4.8
+OBJS = stack.o display2.o
+
+
+.o:	$@.cpp $@.h
+	$(CXX) $(CXXFLAGS) -c $@.cpp
+
+Stacktest:	stacktest.cpp $(OBJS)
+	$(CXX) $(CXXFLAGS) stacktest.cpp $(OBJS) $(LDFLAGS) -o Stacktest
+
+CommandLineCalculator:	commandLineCalculator.cpp $(OBJS)
+	$(CXX) $(CXXFLAGS) commandLineCalculator.cpp $(OBJS) $(LDFLAGS) -o commandLineCalculator
+
+RPNCalc:	RPNCalc.cpp $(OBJS)
+	$(CXX) $(CXXFLAGS) RPNCalc.cpp $(OBJS) $(LDFLAGS) -o calc
